@@ -1,0 +1,78 @@
+<!Doctype html>
+<!--Header-->
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Index</title>
+        <script type="text/javascript">
+            var title = ('Index - ' + window.location.pathname);
+            document.title = title;
+        </script>
+        <link rel="stylesheet" href="/autoindex/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/autoindex/css/bootstrap-theme.min.css"/>
+        <style>
+            html {
+	            height: 100%;
+	            box-sizing: border-box;
+            }
+            body {
+                position: relative;
+                min-height: 100%;
+                margin: 0;
+                padding-bottom: 6rem;
+            }
+            #page {
+                margin: 0 auto;
+                padding: 5px;
+                width: 94%;
+            }
+            footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: #112140;
+                font-size: 18px;
+                text-align: center;
+                color:white;
+                height: 50px;
+                line-height: 50px;
+            }
+            #file-table {
+                font-size:18px;
+            }
+            .label > a { color:white; }
+            .label > a:hover {
+                color: #f0f0f0;
+                text-decoration: none;
+            }
+            #json-output { display: none; }
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <noscript>
+                <h2><span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span> JavaScript is not enabled! Please reload this page with it enabled.</h2>
+            </noscript>
+            <div id="page-header"></div>
+            <table class="table table-bordered table-striped" id="file-table">
+                <tr class="table-header">
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Size</th>
+                </tr>
+                <tr class="parent-dir">
+                    <td id="parent-link">
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <!--nginx json output, continues to footer.html-->
+        <div id="json-output">
