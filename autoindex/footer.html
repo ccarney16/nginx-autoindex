@@ -6,12 +6,6 @@
         <script src="/autoindex/js/bootstrap.min.js"></script>
         <!--Main Script-->
         <script type="text/javascript">
-            function getParent(path) {
-                var split = path.split('/');
-                var _parent = '';
-                for (var i = 0; i < split.length - 2; i++) { _parent += split[i] + '/'; }
-                return _parent;
-            }
             $('#page-header').html('<h2> Index <small>' + window.location.pathname + '</small></h2>');
             if (!window.location.pathname.endsWith('/')) alert('WARNING! Strange setup detected, this page may not work (Did you correctly configure nginx correctly?)');
             $('#parent-link').html('<a href="' + getParent(window.location.pathname) +'"><span class="glyphicon glyphicon-share-alt"></span> Parent Directory</a>');
@@ -28,21 +22,25 @@
                 }
                 $('#file-table').html(tblhtml);
             });
-            //Will see about rewriting this in the future, but this will do for now...
-            function convertBytes(size) {
-                var UNDER = 1.0;
-                var BytesToGB = 1073741824;
-                var BytesToMB = 1048576;
-                var BytesToKB = 1024;
 
-                if(size / BytesToGB > UNDER) {
-                    return ((size / BytesToGB).toFixed(2)).toString() + 'GB'
-                } else if (size / BytesToMB > UNDER){
-                    return ((size / BytesToMB).toFixed(2)).toString() + 'MB'
-                } else if (size / BytesToKB > UNDER){
-                    return ((size / BytesToKB).toFixed(2)).toString() + 'KB'
-                } else {
-                    return size + 'B'
+            //Gets the parent directory from the documents pathname
+            function getParent(path) {
+                var _split = path.split('/');
+                var _parent = '';
+                for (var i = 0; i < _split.length - 2; i++) { _parent += _split[i] + '/'; }
+                return _parent;
+            }
+
+            //Converts bytes to make viewing file sizes easier.
+            function convertBytes(size) {
+                var _under = 1.0; //KB, MB, and GB. Essentially a variable to control size.
+                var _bytesToKB = 1024; //How much bytes in a Kilobyte
+                var _byteAbbr = ["B", "KB", "MB", "GB"]; //Goes upto Gigabytes 
+
+                for(var i = (_byteAbbr.length - 1); i >= 0; i--) {
+                    if (size / Math.pow(_bytesToKB, i) >= _under) {
+                        return (size / Math.pow(_bytesToKB, i)).toFixed(2)  + _byteAbbr[i]; //Returns a new variable with the designation
+                    }                
                 }
             }
         </script>
