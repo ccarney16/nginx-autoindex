@@ -16,6 +16,7 @@
             html {
 	            height: 100%;
 	            box-sizing: border-box;
+                padding-top: 80px;
             }
             body {
                 position: relative;
@@ -23,25 +24,33 @@
                 margin: 0;
                 padding-bottom: 6rem;
             }
+            #main-nav {
+                background-image: url(img/footer.jpg) !important;
+                background-repeat: repeat;
+            }
+            
             #page {
                 margin: 0 auto;
                 padding: 5px;
                 width: 94%;
+            }
+            #file-table {
+                font-size:14px;
             }
             footer {
                 position: absolute;
                 left: 0;
                 bottom: 0;
                 right: 0;
-                background: #112140;
+                background-color: #f2f2f2;
+                background-image: url(img/footer.jpg);
                 font-size: 18px;
                 text-align: center;
-                color:white;
+                color:rgb(59, 59, 59);
                 height: 50px;
                 line-height: 50px;
-            }
-            #file-table {
-                font-size:18px;
+                border-top: solid thin #bfbfbf;
+                -webkit-box-shadow: inset 0px 1px 10px #b5b2b2;
             }
             .label > a { color:white; }
             .label > a:hover {
@@ -53,10 +62,21 @@
     </head>
     <body>
         <div id="page">
+            <nav class="navbar navbar-default navbar-fixed-top" id="main-nav">
+                <div class="navbar-header">
+                    <p class="navbar-text">
+                        <noscript>
+                            <span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span> JavaScript is not enabled! Please reload this page with it enabled.
+                        </noscript>
+                    </p>
+                    <div id="page-header" class="navbar-brand"></div>
+                </div>
+            </nav>
+            
             <noscript>
-                <h2><span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span> JavaScript is not enabled! Please reload this page with it enabled.</h2>
             </noscript>
-            <div id="page-header"></div>
+            
+            <!--To be Removed in the future-->
             <table class="table table-bordered table-striped" id="file-table">
                 <tr class="table-header">
                     <th>Name</th>
@@ -75,4 +95,4 @@
         </div>
 
         <!--nginx json output, continues to footer.html-->
-        <div id="json-output">   
+        <div id="json-output">

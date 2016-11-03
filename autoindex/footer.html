@@ -6,12 +6,20 @@
         <script src="/autoindex/js/bootstrap.min.js"></script>
         <!--Main Script-->
         <script type="text/javascript">
-            $('#page-header').html('<h2> Index <small>' + window.location.pathname + '</small></h2>');
-            if (!window.location.pathname.endsWith('/')) alert('WARNING! Strange setup detected, this page may not work (Did you correctly configure nginx correctly?)');
+            var configFile = "config.json"; //Allows webmasters to design the site with a simple config file
+            var defaultConfig = "/autoindex/default.json"; //fall back to this config if uneable to be read
+            
+            
+            
+            $('#page-header').html('Index <small>' + window.location.pathname + '</small>');
+            if (window.location.pathname.endsWith('.html')) 
+                alert('WARNING! Strange setup detected, this page may not work (Did you correctly configure nginx correctly?)'); //I dont think that we should start with .html
             $('#parent-link').html('<a href="' + getParent(window.location.pathname) +'"><span class="glyphicon glyphicon-share-alt"></span> Parent Directory</a>');
 
             document.addEventListener('DOMContentLoaded', function() {
+                //lets load the json object.
                 let json = JSON.parse($('#json-output').text());
+                
                 var tblhtml = $('#file-table').html();
                 for (let entry of json) {
                     if (entry.type == "directory") {
